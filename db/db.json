@@ -1,0 +1,126 @@
+{
+  "users": [
+    {
+      "id": "0",
+      "name": "Yoav Shita",
+      "email": "yoavishita@gmail.com",
+      "password": "Yoavsh2003!"
+    },
+    {
+      "id": "1",
+      "name": "testos",
+      "email": "test@test.co.il",
+      "password": "**&@!^*$*!*#$"
+    },
+    {
+      "id": "2",
+      "name": "testy",
+      "email": "test2@test.co.il",
+      "password": "**&@!^*$*!*#$"
+    },
+    {
+      "id": "d409",
+      "name": "tony",
+      "email": "tony-stark@gmail.com",
+      "password": "fa9gas8u(*$bbw92b@"
+    },
+    {
+      "id": "4532",
+      "name": "awsgasdg",
+      "email": "asgddasgas",
+      "password": "asgdashadadsg"
+    },
+    {
+      "id": "ba07",
+      "name": "asdf",
+      "email": "asdf",
+      "password": "asdg"
+    },
+    {
+      "id": "70bf",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "6abd",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "32a6",
+      "name": "e4x65c7dr",
+      "email": "cvtiobpn",
+      "password": "6xc7r68vt79b"
+    },
+    {
+      "id": "4043",
+      "name": "yoav",
+      "email": "asodfhg",
+      "password": "h09qhwrghwgr"
+    },
+    {
+      "id": "9450",
+      "name": "asfgasdg",
+      "email": "asgasdg",
+      "password": "asgsdgasdg"
+    },
+    {
+      "id": "2650",
+      "name": "asdfgasdg",
+      "email": "asfdgasdg",
+      "password": "asdgasdg"
+    },
+    {
+      "id": "a33b",
+      "name": "asdgasdg",
+      "email": "asdgasdga",
+      "password": "asdgasdadsg"
+    },
+    {
+      "id": "1b22",
+      "name": "asdgasdg",
+      "email": "asdgasdg",
+      "password": "asdgasdg"
+    },
+    {
+      "id": "6933",
+      "name": "asdfasdf",
+      "email": "asdf@asdf.asdf",
+      "password": "asdfASDF"
+    },
+    {
+      "id": "479a",
+      "name": "asdf",
+      "email": "asdf@asdaf.asdf",
+      "password": "ASDFasdf"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "d61a",
+      "name": "test",
+      "address": "test",
+      "contact": "test"
+    },
+    {
+      "id": "3cb7",
+      "name": "test2",
+      "address": "test2",
+      "contact": "test2"
+    },
+    {
+      "id": "12f1",
+      "name": "asdgasdg",
+      "address": "asdgasdg",
+      "contact": "asdasdgasdg"
+    },
+    {
+      "name": "alon",
+      "address": "RUN",
+      "contact": "pipipupu",
+      "id": "d1e9"
+    }
+  ]
+}
