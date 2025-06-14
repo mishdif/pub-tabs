@@ -1,30 +1,23 @@
 <template>
-  <router-view />
+  <div>
+    <img class="icon" alt="Beer logo" src="./assets/beers-icon.png">
+    <h1>Welcom to PUB-TABS!</h1>
+  </div>
+  <AddTab></AddTab>
+   <TabsList></TabsList>
 </template>
 
 <script>
-export default {
-  name: "App"
-}
-</script>
-
-<!-- <template>
-  <Home></Home>
-  <SignUp></SignUp>
-</template>
-
-<script>
-import Home from './components/Home.vue'
-import SignUp from './components/SignUp.vue';
-
+import TabsList from './components/TabsList.vue';
+import AddTab from './components/AddTab.vue';
 export default {
   name: 'App',
   components: {
-    Home,
-    SignUp
+    TabsList,
+    AddTab
   }
 }
-</script> -->
+</script>
 
 <style>
 #app {
@@ -33,31 +26,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
-body {
-  padding: 0;
-  margin: 0;
-}
-.logo {
-    width: 100px
-}
-.register input, .login input, .home input, .add input {
-    margin-bottom: 30px;
-    width: 300px;
-    height: 40px;
-    padding-left: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid, skyblue;
-  }
-  .register button, .login button, .home button, .add button {
-    width: 320px;
-    height: 40px;
-    border: 1px solid skyblue;
-    background: skyblue;
-    color: #fff;
-    cursor: pointer;
-
+.icon {
+  width: 100px;
+  height: 100px;
 }
 </style>

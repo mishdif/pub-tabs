@@ -122,5 +122,37 @@
       "contact": "pipipupu",
       "id": "d1e9"
     }
+  ],
+  "tabs": [
+    {
+      "client": "Yoav Shita",
+      "punches": 6,
+      "id": "86b4"
+    },
+    {
+      "client": "Shira Zorin",
+      "punches": 8,
+      "id": "8ada"
+    },
+    {
+      "client": "Zohar Jo",
+      "punches": 7,
+      "id": "396b"
+    },
+    {
+      "client": "Itamar SUS",
+      "punches": 4,
+      "id": "f6e8"
+    },
+    {
+      "client": "Dori Love",
+      "punches": 5,
+      "id": "ee4f"
+    },
+    {
+      "client": "Lior Arlior",
+      "punches": 8,
+      "id": "72ae"
+    }
   ]
 }
