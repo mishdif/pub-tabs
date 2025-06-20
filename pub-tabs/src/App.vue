@@ -20,6 +20,12 @@ export default {
 </script>
 
 <style>
+body {
+  background-image: url("@/assets/background-planks-texture.png");
+  background: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
