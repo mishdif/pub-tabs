@@ -41,4 +41,8 @@ export default {
 .user-list > .card:first-child {
   margin-top: 0;
 }
+
+.user-list > .card:last-child {
+  margin-bottom: 0;
+}
 </style>
