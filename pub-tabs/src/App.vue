@@ -3,21 +3,54 @@
     <TopHeader class="top-header"/>    
   </header>
   <main>
-    <TabsList class="tabs-list"/>
+    <!-- <TabsList class="tabs-list"/> -->
+     <UserFolderCardList :users="users"/>
   </main>
   <!-- <AddTab></AddTab> -->
 </template>
 
 <script>
+import UserFolderCardList from './components/UserFolderCardList.vue';
 import TopHeader from './components/TopHeader.vue';
-import TabsList from './components/TabsList.vue';
+// import TabsList from './components/TabsList.vue';
 // import AddTab from './components/AddTab.vue';
 export default {
   name: 'App',
   components: {
-    TabsList,
+    // TabsList,
     // AddTab,
-    TopHeader
+    TopHeader,
+    UserFolderCardList
+  },
+  data() {
+    return {
+      users: [
+        { id: 1, name: 'Alice Blue', username: 'aliceb', phone: '555-1234', tab: 7 },
+        { id: 2, name: 'Bob Gray', username: 'bobg', phone: '555-5678', tab: 3 },
+        { id: 3, name: 'Charlie Green', username: 'charlieg', phone: '555-8765', tab: 5 },
+        { id: 4, name: 'Diana Red', username: 'dianar', phone: '555-4321', tab: 10 },
+        { id: 5, name: 'Ethan White', username: 'ethanw', phone: '555-1357', tab: 2 },
+        { id: 6, name: 'Fiona Black', username: 'fionab', phone: '555-2468', tab: 9 },
+        { id: 7, name: 'George Brown', username: 'georgeb', phone: '555-9753', tab: 6 },
+        { id: 8, name: 'Hannah Yellow', username: 'hannahy', phone: '555-8642', tab: 4 },
+        { id: 9, name: 'Ian Orange', username: 'iano', phone: '555-7531', tab: 8 },
+        { id: 10, name: 'Julia Pink', username: 'juliap', phone: '555-6420', tab: 1 },
+        { id: 11, name: 'Kevin Violet', username: 'kevinv', phone: '555-5319', tab: 7 },
+        { id: 12, name: 'Laura Indigo', username: 'laurai', phone: '555-4208', tab: 3 },
+        { id: 13, name: 'Mark Cyan', username: 'markc', phone: '555-3197', tab: 5 },
+        { id: 14, name: 'Nina Lime', username: 'ninal', phone: '555-2086', tab: 9 },
+        { id: 15, name: 'Oliver Teal', username: 'olivert', phone: '555-1975', tab: 2 },
+        { id: 16, name: 'Paula Maroon', username: 'paulam', phone: '555-0864', tab: 6 },
+        { id: 17, name: 'Quentin Olive', username: 'quentino', phone: '555-9753', tab: 8 },
+        { id: 18, name: 'Rachel Coral', username: 'rachelc', phone: '555-8642', tab: 4 },
+        { id: 19, name: 'Steve Azure', username: 'stevea', phone: '555-7531', tab: 7 },
+        { id: 20, name: 'Tina Gold', username: 'tinag', phone: '555-6420', tab: 3 },
+        { id: 21, name: 'Uma Silver', username: 'umas', phone: '555-5319', tab: 1 },
+        { id: 22, name: 'Victor Bronze', username: 'victorb', phone: '555-4208', tab: 5 },
+        { id: 23, name: 'Wendy Pearl', username: 'wendyp', phone: '555-3197', tab: 9 },
+        { id: 24, name: 'Xander Ruby', username: 'xanderr', phone: '555-2086', tab: 4 }
+      ]
+    }
   }
 }
 </script>
