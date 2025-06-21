@@ -10,7 +10,8 @@
     </div>
 
     <!-- Details (Visible When Expanded) -->
-    <div class="content" v-if="expanded">
+    <div class="content">
+    <!-- <div class="content" v-if="expanded"> -->
       <p><strong>Username:</strong> {{ user.username }}</p>
       <p><strong>ID:</strong> {{ user.id }}</p>
       <p><strong>Phone:</strong> {{ user.phone }}</p>
@@ -45,41 +46,51 @@ export default {
 
 <style scoped>
 .card {
-  width: 100%;
+  color: #343434;
+  width: 95%;
+  margin: auto;
   position: relative;
-  top: calc(-30px * var(--i)); /* each card is shifted up */
+  /* top: calc(-160px * var(--i)); /* each card is shifted up */
+  margin-top: -160px;
   z-index: calc(100 + var(--i)); /* higher cards are lower */
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.4s ease-in-out;
   padding: 20px;
   padding-top: 40px;
   border: 1px solid #ccc;
+  border-top: 2px solid #ccc;
   border-radius: 10px;
-  background: #fff8dc;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.78);
 }
-
 
 .card.expanded {
   z-index: 999;
+  margin-bottom: 160px;
+  /* bottom: calc(-24px * var(--i)); /* each card is shifted up */
+  /* bottom: calc(300px * var(--i)); /* each card is shifted down */
   transform: scale(1.01);
+  /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.78); */
 }
 
 .tab {
   position: absolute;
   top: -15px;
-  left: 15px;
-  background: #f7d674;
-  border: 1px solid #e0c252;
+  left: -1px;
+  /* background: #f7d674; */
+  background: white;
+  /* border: 1px solid #e0c252; */
   padding: 5px 15px;
   border-radius: 5px 5px 0 0;
+  border-top: 2px solid #ccc;
+  border-left: 1px solid #ccc;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.15); */
+  box-shadow: 0px -2px 2px rgba(0,0,0,0.3);
 }
 
 .content p {
   margin: 8px 0;
-  color: black;
 }
 
 .tab-section {
@@ -97,10 +108,12 @@ export default {
   height: 12px;
   border-radius: 50%;
   background: #ddd;
-  border: 1px solid #bbb;
+  border: 1px dashed #aaa;
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .dot.filled {
-  background: #4caf50;
+  background: white;
+  box-shadow: none;
 }
 </style>
