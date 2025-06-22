@@ -47,11 +47,12 @@ export default {
 <style scoped>
 .card {
   color: #343434;
-  width: 95%;
-  margin: auto;
+  /* width: 95%; */
+  /* margin: auto; */
+  margin: -190px 0px 30px;
   position: relative;
   /* top: calc(-160px * var(--i)); /* each card is shifted up */
-  margin-top: -160px;
+  /* margin-top: -160px; */
   z-index: calc(100 + var(--i)); /* higher cards are lower */
   transition: transform 0.4s ease-in-out;
   padding: 20px;
@@ -75,7 +76,7 @@ export default {
 .tab {
   position: absolute;
   top: -15px;
-  left: -1px;
+  left: -0.9px;
   /* background: #f7d674; */
   background: white;
   /* border: 1px solid #e0c252; */

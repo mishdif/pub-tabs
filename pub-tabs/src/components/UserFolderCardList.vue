@@ -1,11 +1,20 @@
 <template>
   <div class="user-list">
-    <UserFolderCard
-        v-for="(user, index) in users"
+    <input
+      type="text"
+      v-model="searchQuery"
+      class="search-input"
+      placeholder="Search by name..."
+    />
+
+    <div class="cards-wrapper">
+      <UserFolderCard
+        v-for="(user, index) in filteredUsers"
         :key="user.id"
         :user="user"
         :index="index"
-    />
+      />
+    </div>
   </div>
 </template>
 
@@ -19,11 +28,40 @@ export default {
         type: Array,
         required: true
     }
+  },
+  data() {
+    return {
+      searchQuery: ''
+    };
+  },
+  computed: {
+    filteredUsers() {
+      const query = this.searchQuery.trim().toLowerCase();
+      if (!query) return this.users;
+      return this.users.filter(user =>
+        user.name.toLowerCase().includes(query)
+      );
+    }
   }
 };
 </script>
 
 <style scoped>
+.search-input {
+  /* width: 95%; */
+  padding: 12px 16px;
+  size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  margin: 0px 0px 30px;
+}
+
+.cards-wrapper {
+  position: relative;
+  margin-top: 190px; /* creates space between search and first card */
+}
+
 .user-list {
   position: relative;
   display: flex;
