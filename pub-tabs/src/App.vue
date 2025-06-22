@@ -33,17 +33,22 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get('http://localhost:3000/users')
-      .then(res => {
-        this.users = res.data;
-      })
-      .catch(err => {
+  this.fetchUsers();
+},
+  methods: {
+    async fetchUsers() {
+      this.loading = true;
+      this.error = null;
+
+      try {
+        const response = await axios.get('http://localhost:3000/users');
+        this.users = response.data;
+      } catch (err) {
         this.error = err.message || 'Failed to fetch users';
-      })
-      .finally(() => {
+      } finally {
         this.loading = false;
-    });
+      }
+    }
   }
 };
 </script>
