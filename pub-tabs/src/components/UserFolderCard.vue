@@ -4,26 +4,26 @@
     :class="{ expanded: expanded }"
     :style="`--i: ${index}`"
   >
-    <!-- Folder Tab -->
     <div class="tab" @click="expanded = !expanded">
       {{ user.name }}
     </div>
-
-    <!-- Details (Visible When Expanded) -->
     <div class="content">
     <!-- <div class="content" v-if="expanded"> -->
-      <p><strong>Username:</strong> {{ user.username }}</p>
-      <p><strong>ID:</strong> {{ user.id }}</p>
-      <p><strong>Phone:</strong> {{ user.phone }}</p>
-
-      <div class="tab-section">
-        <p><strong>Tab:</strong> {{ user.tab }} punches left</p>
-        <div class="punches">
-          <span
-            v-for="n in 10"
-            :key="n"
-            :class="['dot', { filled: n <= user.tab }]"
-          ></span>
+      <div class="card-body">
+        <div class="info">
+          <p><strong>ID:</strong> {{ user.id }}</p>
+          <p><strong>Phone:</strong> {{ user.phone }}</p>
+          <p><strong>Username:</strong> {{ user.username }}</p>
+        </div>
+        <div class="tab-display">
+          <p><strong>Punches: </strong> {{ user.tab }}</p>
+          <div class="punches">
+            <span
+              v-for="n in 10"
+              :key="n"
+              :class="['dot', { filled: n <= user.tab }]"
+            ></span>
+          </div>
         </div>
       </div>
     </div>
@@ -49,14 +49,14 @@ export default {
   color: #343434;
   /* width: 95%; */
   /* margin: auto; */
-  margin: -190px 0px 30px;
+  margin: -190px 0px 40px;
   position: relative;
   /* top: calc(-160px * var(--i)); /* each card is shifted up */
   /* margin-top: -160px; */
   z-index: calc(100 + var(--i)); /* higher cards are lower */
   transition: transform 0.4s ease-in-out;
   padding: 20px;
-  padding-top: 40px;
+  /* padding-top: 40px; */
   border: 1px solid #ccc;
   border-top: 2px solid #ccc;
   border-radius: 10px;
@@ -64,13 +64,30 @@ export default {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.78);
 }
 
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
 .card.expanded {
   z-index: 999;
-  margin-bottom: 160px;
+  margin-bottom: 190px;
   /* bottom: calc(-24px * var(--i)); /* each card is shifted up */
   /* bottom: calc(300px * var(--i)); /* each card is shifted down */
   transform: scale(1.01);
   /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.78); */
+}
+
+.info {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.tab-display {
+  text-align: left;
+  margin-right: 160px;
 }
 
 .tab {
@@ -99,9 +116,20 @@ export default {
 }
 
 .punches {
-  display: flex;
-  gap: 5px;
+  border: 1px dotted #ccc;
+  border-bottom: 1px dotted #aaa;
+  border-left: 1px dotted #aaa;
+  padding: 15px 15px 15px;
+  border-radius: 3px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
   margin-top: 5px;
+  justify-items: center;
+  width: 200px; /* ensures consistent width */
+  height: 60px;
+  margin-bottom: 40px;
 }
 
 .dot {
