@@ -41,7 +41,8 @@ export default {
       this.error = null;
 
       try {
-        const response = await axios.get('http://localhost:3000/users');
+        // const response = await axios.get('http://localhost:3000/users');
+        const response = await axios.get('http://192.168.1.17:3000/users');
         this.users = response.data;
       } catch (err) {
         this.error = err.message || 'Failed to fetch users';
