@@ -13,6 +13,7 @@
         :key="user.id"
         :user="user"
         :index="index"
+        @update-punches="$emit('update-punches', $event)"
       />
     </div>
   </div>

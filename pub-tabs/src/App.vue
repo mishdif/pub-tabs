@@ -6,7 +6,10 @@
   </header>
   <main>
     <!-- <TabsList class="tabs-list"/> -->
-     <UserFolderCardList :users="users"/>
+    <UserFolderCardList 
+      :users="users"
+      @update-punches="handlePunchChange"
+    />
   </main>
   <!-- <AddTab></AddTab> -->
 </template>
@@ -48,6 +51,15 @@ export default {
         this.error = err.message || 'Failed to fetch users';
       } finally {
         this.loading = false;
+      }
+    },
+    async handlePunchChange({ id, punches }) {
+      try {
+        await axios.patch(`http://192.168.1.17:3000/users/${id}`, { punches });
+        const user = this.users.find(u => u.id === id);
+        if (user) user.punches = punches;
+      } catch (err) {
+        console.error('Failed to update punches:', err);
       }
     }
   }

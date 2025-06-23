@@ -16,12 +16,14 @@
           <p><strong>Username:</strong> {{ user.username }}</p>
         </div>
         <div class="tab-display">
-          <p><strong>Punches: </strong> {{ user.tab }}</p>
+          <p><strong>Punches: </strong> {{ user.punches.filter(Boolean).length }}</p>
           <div class="punches">
             <span
-              v-for="n in punchOrder"
-              :key="n"
-              :class="['dot', { punched: n <= 10 - user.tab }]"
+              v-for="(punched, index) in user.punches"
+              :key="index"
+              :class="['dot', { punched: punched }]"
+              @click="togglePunch(index)"
+              :title="`Punch ${index + 1}`"
             ></span>
           </div>
         </div>
@@ -48,6 +50,17 @@ export default {
         1, 2, 3, 4, 5,  // top row
         6, 7, 8, 9, 10  // bottom row
       ];
+    }
+  },
+  methods: {
+    togglePunch(index) {
+      const newPunches = [...this.user.punches];
+      newPunches[index] = !newPunches[index];
+
+      this.$emit('update-punches', {
+        id: this.user.id,
+        punches: newPunches
+      });
     }
   }
 };
@@ -133,26 +146,32 @@ export default {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
+  gap: 16px;
   margin-top: 5px;
   justify-items: center;
-  width: 120px; /* ensures consistent width */
+  /* width: 120px; /* ensures consistent width */
   height: 60px;
   margin-bottom: 40px;
   grid-auto-flow: row
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: white;
+  /* background: white; */
   box-shadow: none;
   border: 1px dashed #aaa;
+  cursor: pointer;
+  /* transition: background 0.2s, transform 0.1s; */
+}
+
+.dot:hover {
+  transform: scale(1.1);
 }
 
 .dot.punched {
-  background: #ddd;
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.2);
+  box-shadow: inset 2px 2px 1px rgba(0,0,0,0.5);
 }
 </style>
