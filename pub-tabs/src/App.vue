@@ -9,6 +9,7 @@
     <UserFolderCardList 
       :users="users"
       @update-punches="handlePunchChange"
+      @refresh="fetchUsers"
     />
   </main>
   <!-- <AddTab></AddTab> -->

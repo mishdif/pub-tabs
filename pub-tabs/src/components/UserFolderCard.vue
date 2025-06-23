@@ -122,6 +122,7 @@ export default {
 .tab-display {
   text-align: left;
   margin-right: 160px;
+  margin-left: -16px;
 }
 
 .tab {

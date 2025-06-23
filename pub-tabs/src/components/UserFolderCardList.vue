@@ -1,12 +1,28 @@
 <template>
   <div class="user-list">
-    <input
-      type="text"
-      v-model="searchQuery"
-      class="search-input"
-      placeholder="Search by name..."
-    />
-
+    <div class="top-bar">
+      <input
+        type="text"
+        v-model="searchQuery"
+        class="search-input"
+        placeholder="Search by name..."
+      />
+      <button @click="showModal = true" class="add-button">Add User</button>
+    </div>
+    
+    <!-- Modal -->
+    <div v-if="showModal" class="modal-backdrop" @click.self="showModal = false">
+      <div class="modal">
+        <h2>Add New User</h2>
+        <form @submit.prevent="submitUser">
+          <input v-model="newUser.name" placeholder="Name" required />
+          <input v-model="newUser.phone" placeholder="Phone" required />
+          <button type="submit">Save</button>
+          <button type="button" @click="showModal = false">Cancel</button>
+        </form>
+      </div>
+    </div>
+    
     <div class="cards-wrapper">
       <UserFolderCard
         v-for="(user, index) in filteredUsers"
@@ -22,7 +38,7 @@
 
 <script>
 import UserFolderCard from './UserFolderCard.vue';
-
+import axios from 'axios';
 export default {
   components: { UserFolderCard },
   props: {
@@ -31,9 +47,15 @@ export default {
         required: true
     }
   },
+  emits: ["refresh"],
   data() {
     return {
-      searchQuery: ''
+      searchQuery: '',
+      showModal: false,
+      newUser: {
+        name: '',
+        phone: ''
+      }
     };
   },
   computed: {
@@ -44,19 +66,88 @@ export default {
         user.name.toLowerCase().includes(query)
       );
     }
+  },
+  methods: {
+    async submitUser() {
+      const newUserData = {
+        ...this.newUser,
+        username: this.newUser.name.toLowerCase().replace(/\s+/g, ''),
+        punches: [ true, true, true, true, true, true, true, true, true, true ]
+      };
+
+      try {
+        await axios.post('http://192.168.1.17:3000/users', newUserData);
+        this.showModal = false;
+        this.newUser.name = '';
+        this.newUser.phone = '';
+        this.$emit('refresh'); // ask App.vue to refetch users
+      } catch (err) {
+        console.error('Failed to add user:', err);
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
 .search-input {
-  /* width: 95%; */
+  flex: 1;
   padding: 12px 16px;
-  size: 14px;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  margin: 0px 0px 30px;
+  border: 1px solid #ccc;
+  margin: 4px;
+}
+
+.add-button {
+  padding: 12px 16px;
+  background: white;
+  color: #343434;
+  font-weight: bolder;
+  border: none;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.modal input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.modal button {
+  margin-right: 10px;
+  padding: 6px 12px;
 }
 
 .cards-wrapper {
