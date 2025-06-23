@@ -1,7 +1,7 @@
 <template>
   <div
     class="card"
-    :class="{ expanded: expanded }"
+    :class="{ expanded, lastExpanded: expanded && isLast }"
     :style="`--i: ${index}`"
   >
     <div class="tab" @click="expanded = !expanded">
@@ -36,7 +36,8 @@
 export default {
   props: {
     user: Object,
-    index: Number
+    index: Number,
+    isLast: Boolean
   },
   data() {
     return {
@@ -102,6 +103,10 @@ export default {
   /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.78); */
 }
 
+.card.lastExpanded {
+  margin-bottom: 0 !important;
+}
+
 .info {
   margin-top: 15px;
   text-align: left;
@@ -156,8 +161,8 @@ export default {
 }
 
 .dot {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   /* background: white; */
   box-shadow: none;
