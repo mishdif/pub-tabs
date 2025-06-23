@@ -19,9 +19,9 @@
           <p><strong>Punches: </strong> {{ user.tab }}</p>
           <div class="punches">
             <span
-              v-for="n in 10"
+              v-for="n in punchOrder"
               :key="n"
-              :class="['dot', { filled: n <= user.tab }]"
+              :class="['dot', { punched: n <= 10 - user.tab }]"
             ></span>
           </div>
         </div>
@@ -40,6 +40,15 @@ export default {
     return {
       expanded: false
     };
+  },
+  computed: {
+    punchOrder() {
+      // Creates row-first ordering: 1-5 on top, 6-10 below
+      return [
+        1, 2, 3, 4, 5,  // top row
+        6, 7, 8, 9, 10  // bottom row
+      ];
+    }
   }
 };
 </script>
@@ -127,22 +136,23 @@ export default {
   gap: 6px;
   margin-top: 5px;
   justify-items: center;
-  width: 200px; /* ensures consistent width */
+  width: 120px; /* ensures consistent width */
   height: 60px;
   margin-bottom: 40px;
+  grid-auto-flow: row
 }
 
 .dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #ddd;
-  border: 1px dashed #aaa;
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
-}
-
-.dot.filled {
   background: white;
   box-shadow: none;
+  border: 1px dashed #aaa;
+}
+
+.dot.punched {
+  background: #ddd;
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
 }
 </style>
