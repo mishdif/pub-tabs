@@ -82,7 +82,7 @@ export default {
   /* padding-top: 40px; */
   border: 1px solid #ccc;
   border-top: 2px solid #ccc;
-  border-radius: 10px;
+  border-radius: 0px 10px 10px 10px;
   background: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.78);
 }
@@ -119,7 +119,7 @@ export default {
 
 .tab {
   position: absolute;
-  top: -15px;
+  top: -33px;
   left: -0.9px;
   /* background: #f7d674; */
   background: white;

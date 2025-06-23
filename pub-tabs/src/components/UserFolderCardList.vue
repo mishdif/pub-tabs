@@ -61,7 +61,7 @@ export default {
 
 .cards-wrapper {
   position: relative;
-  margin-top: 190px; /* creates space between search and first card */
+  margin-top: 205px; /* creates space between search and first card */
 }
 
 .user-list {
