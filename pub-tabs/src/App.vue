@@ -5,27 +5,21 @@
     <div v-else-if="error">Error getting users: {{ error }}</div>
   </header>
   <main>
-    <!-- <TabsList class="tabs-list"/> -->
     <UserFolderCardList 
       :users="users"
       @update-punches="handlePunchChange"
       @refresh="fetchUsers"
     />
   </main>
-  <!-- <AddTab></AddTab> -->
 </template>
 
 <script>
 import axios from 'axios';
 import UserFolderCardList from './components/UserFolderCardList.vue';
 import TopHeader from './components/TopHeader.vue';
-// import TabsList from './components/TabsList.vue';
-// import AddTab from './components/AddTab.vue';
 export default {
   name: 'App',
   components: {
-    // TabsList,
-    // AddTab,
     TopHeader,
     UserFolderCardList
   },
@@ -45,7 +39,6 @@ export default {
       this.error = null;
 
       try {
-        // const response = await axios.get('http://localhost:3000/users');
         const response = await axios.get('http://192.168.1.17:3000/users');
         this.users = response.data;
       } catch (err) {
