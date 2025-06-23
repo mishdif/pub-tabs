@@ -18,6 +18,7 @@
         <div class="tab-display">
           <p><strong>Punches: </strong> {{ user.punches.filter(Boolean).length }}</p>
           <div class="punches">
+            <ToastMessage ref="toast" :message="toastMessage" />
             <span
               v-for="(punched, index) in user.punches"
               :key="index"
@@ -33,7 +34,9 @@
 </template>
 
 <script>
+import ToastMessage from './ToastMessage.vue';
 export default {
+  components: { ToastMessage },
   props: {
     user: Object,
     index: Number,
@@ -41,7 +44,8 @@ export default {
   },
   data() {
     return {
-      expanded: false
+      expanded: false,
+      toastMessage: ''
     };
   },
   computed: {
@@ -62,6 +66,9 @@ export default {
         id: this.user.id,
         punches: newPunches
       });
+
+      this.toastMessage = `Tab updated`;
+      this.$refs.toast.show();
     }
   }
 };
