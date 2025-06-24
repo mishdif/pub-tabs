@@ -15,6 +15,7 @@
 
 <script>
 import axios from 'axios';
+const api = process.env.VUE_APP_API_BASE_URL;
 import UserFolderCardList from './components/UserFolderCardList.vue';
 import TopHeader from './components/TopHeader.vue';
 export default {
@@ -39,7 +40,7 @@ export default {
       this.error = null;
 
       try {
-        const response = await axios.get('http://192.168.1.17:3000/users');
+        const response = await axios.get(`${api}/users`);
         this.users = response.data;
       } catch (err) {
         this.error = err.message || 'Failed to fetch users';
@@ -49,7 +50,7 @@ export default {
     },
     async handlePunchChange({ id, punches }) {
       try {
-        await axios.patch(`http://192.168.1.17:3000/users/${id}`, { punches });
+        await axios.patch(`${api}/users/${id}`, { punches });
         const user = this.users.find(u => u.id === id);
         if (user) user.punches = punches;
       } catch (err) {

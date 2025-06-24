@@ -41,6 +41,7 @@
 <script>
 import UserFolderCard from './UserFolderCard.vue';
 import axios from 'axios';
+const api = process.env.VUE_APP_API_BASE_URL;
 export default {
   components: { UserFolderCard },
   props: {
@@ -78,7 +79,7 @@ export default {
       };
 
       try {
-        await axios.post('http://192.168.1.17:3000/users', newUserData);
+        await axios.post(`${api}/users`, newUserData);
         this.showModal = false;
         this.newUser.name = '';
         this.newUser.phone = '';
@@ -90,7 +91,7 @@ export default {
 
     async handleUpdateUser(updatedUser) {
       try {
-        await axios.patch(`http://192.168.1.17:3000/users/${updatedUser.id}`, updatedUser);
+        await axios.patch(`${api}/users/${updatedUser.id}`, updatedUser);
         this.$emit('refresh');
       } catch (err) {
         console.error('Update failed:', err);
@@ -98,7 +99,7 @@ export default {
     },
     async handleDeleteUser(userId) {
       try {
-        await axios.delete(`http://192.168.1.17:3000/users/${userId}`);
+        await axios.delete(`${api}/users/${userId}`);
         this.$emit('refresh');
       } catch (err) {
         console.error('Delete failed:', err);
