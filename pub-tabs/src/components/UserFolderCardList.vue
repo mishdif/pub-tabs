@@ -132,6 +132,7 @@ export default {
 
 .modal {
   background: white;
+  color: #343434;
   padding: 30px;
   border-radius: 10px;
   width: 300px;

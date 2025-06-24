@@ -11,12 +11,12 @@
     <!-- <div class="content" v-if="expanded"> -->
       <div class="card-body">
         <div class="info">
-          <p><strong>ID:</strong> {{ user.id }}</p>
+          <p style="color: #aaa;"><strong>ID:</strong> {{ user.id }}</p>
           <p><strong>Phone:</strong> {{ user.phone }}</p>
-          <p><strong>Username:</strong> {{ user.username }}</p>
+          <!-- <p><strong>Username:</strong> {{ user.username }}</p> -->
         </div>
         <div class="tab-display">
-          <p><strong>Punches: </strong> {{ user.punches.filter(Boolean).length }}</p>
+          <p><strong>{{ 10 - user.punches.filter(Boolean).length }} Punches Left</strong></p>
           <div class="punches">
             <ToastMessage ref="toast" :message="toastMessage" />
             <span
@@ -120,8 +120,8 @@ export default {
 }
 
 .tab-display {
-  text-align: left;
-  margin-right: 160px;
+  text-align: right;
+  margin-right: 0px;
   margin-left: -16px;
 }
 
@@ -139,7 +139,7 @@ export default {
   font-weight: bold;
   cursor: pointer;
   /* box-shadow: 0 2px 4px rgba(0,0,0,0.15); */
-  box-shadow: 0px -2px 2px rgba(0,0,0,0.3);
+  box-shadow: 3px -3px 3px rgba(0,0,0,0.3);
 }
 
 .content p {
