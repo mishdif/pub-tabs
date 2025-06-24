@@ -12,11 +12,25 @@
       <div class="card-body">
         <div class="info">
           <p style="color: #aaa;"><strong>ID:</strong> {{ user.id }}</p>
-          <p><strong>Phone:</strong> {{ user.phone }}</p>
+          <p><strong>Phone:</strong></p>
+          <p>{{ user.phone }}</p>
           <!-- <p><strong>Username:</strong> {{ user.username }}</p> -->
+          <div class="card-actions">
+            <button @click="editMode = !editMode">
+              {{ editMode ? 'Cancel' : 'Edit' }}
+            </button>
+            <button @click="confirmDelete">Delete</button>
+          </div>
+
+          <!-- Edit form (shown in editMode) -->
+          <div v-if="editMode" class="edit-form">
+            <input v-model="editedUser.name" placeholder="Name" />
+            <input v-model="editedUser.phone" placeholder="Phone" />
+            <button @click="saveEdit">Save</button>
+          </div>
         </div>
         <div class="tab-display">
-          <p><strong>{{ 10 - user.punches.filter(Boolean).length }} Punches Left</strong></p>
+          <p class="punches-header"><strong>{{ 10 - user.punches.filter(Boolean).length }} Punches Left</strong></p>
           <div class="punches">
             <ToastMessage ref="toast" :message="toastMessage" />
             <span
@@ -45,8 +59,23 @@ export default {
   data() {
     return {
       expanded: false,
-      toastMessage: ''
+      toastMessage: '',
+      editMode: false,
+      editedUser: {
+        name: '',
+        phone: ''
+      }
     };
+  },
+  watch: {
+    editMode(newVal) {
+      if (newVal) {
+        this.editedUser = {
+          name: this.user.name,
+          phone: this.user.phone
+        };
+      }
+    }
   },
   computed: {
     punchOrder() {
@@ -69,12 +98,63 @@ export default {
 
       this.toastMessage = `Tab updated`;
       this.$refs.toast.show();
+    },
+    
+    saveEdit() {
+      const updatedUser = {
+        ...this.user,
+        name: this.editedUser.name,
+        phone: this.editedUser.phone
+      };
+      this.$emit('update-user', updatedUser);
+      this.editMode = false;
+    },
+    confirmDelete() {
+      if (confirm(`Delete user "${this.user.name}"?`)) {
+        this.$emit('delete-user', this.user.id);
+      }
     }
   }
 };
 </script>
 
 <style scoped>
+.card-actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card-actions button:first-child {
+  background-color: #1976d2;
+  color: white;
+}
+
+.card-actions button:last-child {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.edit-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-form input {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
 .card {
   color: #343434;
   /* width: 95%; */
@@ -146,8 +226,8 @@ export default {
   margin: 8px 0;
 }
 
-.tab-section {
-  margin-top: 15px;
+.punches-header{
+  margin-top: 10px !important;
 }
 
 .punches {
@@ -160,17 +240,18 @@ export default {
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
-  margin-top: 5px;
   justify-items: center;
   /* width: 120px; /* ensures consistent width */
   height: 60px;
+  margin-top: 10px;
   margin-bottom: 40px;
+  margin-left: -20px;
   grid-auto-flow: row
 }
 
 .dot {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   /* background: white; */
   box-shadow: none;

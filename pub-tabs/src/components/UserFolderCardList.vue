@@ -31,6 +31,8 @@
         :index="index"
         @update-punches="$emit('update-punches', $event)"
         :isLast="index === filteredUsers.length - 1"
+        @update-user="handleUpdateUser"
+        @delete-user="handleDeleteUser"
       />
     </div>
   </div>
@@ -83,6 +85,23 @@ export default {
         this.$emit('refresh'); // ask App.vue to refetch users
       } catch (err) {
         console.error('Failed to add user:', err);
+      }
+    },
+
+    async handleUpdateUser(updatedUser) {
+      try {
+        await axios.patch(`http://192.168.1.17:3000/users/${updatedUser.id}`, updatedUser);
+        this.$emit('refresh');
+      } catch (err) {
+        console.error('Update failed:', err);
+      }
+    },
+    async handleDeleteUser(userId) {
+      try {
+        await axios.delete(`http://192.168.1.17:3000/users/${userId}`);
+        this.$emit('refresh');
+      } catch (err) {
+        console.error('Delete failed:', err);
       }
     }
   }
