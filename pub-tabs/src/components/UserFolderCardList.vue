@@ -75,7 +75,7 @@ export default {
       const newUserData = {
         ...this.newUser,
         username: this.newUser.name.toLowerCase().replace(/\s+/g, ''),
-        punches: [ true, true, true, true, true, true, true, true, true, true ]
+        punches: [ false, false, false, false, false, false, false, false, false, false ]
       };
 
       try {
